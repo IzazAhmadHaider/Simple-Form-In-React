@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [name, setName] = useState(" ");
+  const [fname, setFname] = useState(" ");
+
+  function namechange(e) {
+    setName(e.target.value);
+  }
+  function fnamechange(e) {
+    setFname(e.target.value);
+  }
+
+  function getform() {
+    const nameValue = name;
+    const fnameValue = fname;
+ 
+      const message = `: ${nameValue}, Father Name: ${fnameValue}`;
+      document.getElementById("newedit").textContent = message;
+    
+  }
+  
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <form>
+          <label htmlFor="Name">Name:</label>
+          <input type="text" name="Name " value={name} onChange={namechange} id="name" />
+          <label htmlFor="Father Name">Father Name:</label>
+          <input type="text" name="Father Name" value={fname} onChange={fnamechange} id="fname" />
+        </form>
+        <button id="btn" onClick={getform}>
+          Submit
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <p id="newedit"></p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
